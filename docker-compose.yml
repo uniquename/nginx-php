@@ -1,17 +1,27 @@
-services:
-    nginx:
-        image: nginx:latest
-        ports:
-            - "80:80"
-        volumes:
-            - ./conf.d:/etc/nginx/conf.d/
-            - ./logs:/var/log/nginx/
-        depends_on:
-            - php-fpm
+version: '3.8'
 
-    php-fpm:
-        build: .
-        volumes:
-            - ./:/var/www/html/
-        expose:
-            - "9000"
+services:
+  nginx:
+    image: nginx:stable-alpine
+    container_name: nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./web:/var/www/html
+      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./nginx/logs:/var/log/nginx
+    depends_on:
+      - php-fpm
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: php-fpm
+    volumes:
+      - ./web:/var/www/html
+      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    expose:
+      - "9000"
+
+
