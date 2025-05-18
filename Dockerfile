@@ -1,5 +1,11 @@
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
 # https://www.drupal.org/docs/system-requirements/php-requirements
-FROM php:8.4-fpm-bookworm
+FROM php:8.4-apache-bookworm
 
 # install the PHP extensions we need
 RUN set -eux; \

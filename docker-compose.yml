@@ -1,25 +1,15 @@
 version: '3.8'
 
 services:
-  nginx:
-    image: nginx:stable-alpine
-    container_name: nginx
-    volumes:
-      - ./web:/var/www/html
-      - ./nginx/conf.d:/etc/nginx/conf.d
-      - ./nginx/logs:/var/log/nginx
-    depends_on:
-      - php-fpm
 
-  php-fpm:
+
+  web:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: php-fpm
+    container_name: web
     volumes:
       - ./web:/var/www/html
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    expose:
-      - "9000"
+
 
 
