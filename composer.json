@@ -1,0 +1,13 @@
+{
+    "name": "hendrik/nginx-php",
+    "description": "A simple PHP application running on Nginx",
+    "authors": [
+        {
+            "name": "uniquename",
+            "email": "h@12deg.de"
+        }
+    ],
+    "require": {
+        "vlucas/phpdotenv": "*"
+    }
+}

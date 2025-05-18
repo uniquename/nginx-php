@@ -1,0 +1,17 @@
+services:
+    nginx:
+        image: nginx:latest
+        ports:
+            - "80:80"
+        volumes:
+            - ./conf.d:/etc/nginx/conf.d/
+            - ./logs:/var/log/nginx/
+        depends_on:
+            - php-fpm
+
+    php-fpm:
+        build: .
+        volumes:
+            - ./:/var/www/html/
+        expose:
+            - "9000"
