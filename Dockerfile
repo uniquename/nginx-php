@@ -89,6 +89,6 @@ RUN set -eux; \
 	rm -rf "$COMPOSER_HOME"
 
 #Copy Drupal files to the container.
-COPY --chown=www-data:www-data . .
+COPY --chown=www-data:www-data . ./
 
 ENV PATH=${PATH}:/opt/drupal/vendor/bin
