@@ -4,8 +4,6 @@ services:
   nginx:
     image: nginx:stable-alpine
     container_name: nginx
-    ports:
-      - "80:80"
     volumes:
       - ./web:/var/www/html
       - ./nginx/conf.d:/etc/nginx/conf.d
