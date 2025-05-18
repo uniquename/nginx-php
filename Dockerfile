@@ -76,7 +76,7 @@ ENV DRUPAL_VERSION 11.1.7
 # https://github.com/composer/composer/blob/94fe2945456df51e122a492b8d14ac4b54c1d2ce/src/Composer/Console/Application.php#L217-L218
 ENV COMPOSER_ALLOW_SUPERUSER 1
 
-WORKDIR /opt/drupal
+WORKDIR /var/www/html
 
 # Copy composer.json and composer.lock into the container.
 COPY composer.json composer.lock ./
@@ -85,8 +85,6 @@ COPY composer.json composer.lock ./
 RUN set -eux; \
     export COMPOSER_HOME="$(mktemp -d)"; \
     composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader; \
-	rmdir /var/www/html; \
-	ln -sf /opt/drupal/web /var/www/html; \
 	# delete composer cache
 	rm -rf "$COMPOSER_HOME"
 
